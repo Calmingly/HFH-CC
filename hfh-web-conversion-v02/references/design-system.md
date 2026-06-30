@@ -4,15 +4,14 @@
 
 ```
 --navy:    #000064   headings, brand text
---blue:    #1464B9   links, primary accent
---blue-lt: #F0F5FB   callout bg, tag bg
---blue-md: #D6E4F2   tag border, dividers
+--blue:    #1464B9   links, primary accent (also accent slot 6)
+--blue-lt: #F0F5FB   callout bg, step badge bg
+--blue-md: #D6E4F2   sidebar bg, dividers
 --cyan:    #0091E1   accent slot 1
 --pink:    #DC0096   accent slot 2
 --purple:  #7D50AC   accent slot 3
 --green:   #00C896   accent slot 4
 --orange:  #FA550A   accent slot 5
---blue:    #1464B9   accent slot 6
 --bg:      #F7F9FC   page background
 --surface: #FFFFFF   card and hero background
 --text:    #0D1B2E   body text
@@ -20,6 +19,8 @@
 --border:  #E2EAF3   card and section borders
 --amber:   #B45309   Before You Begin block
 ```
+
+> Note: `--blue` (#1464B9) serves dual purpose — it is both the link/UI color and accent slot 6 in the rotation. There is no separate CSS variable for slot 6; use `style="--ac:#1464B9"` inline.
 
 ## Accent Rotation
 
@@ -63,6 +64,9 @@ Naming: `icon_{CODEPOINT}_{ACCENT_HEX_NO_HASH}_15.png`
 | schedule | F621 | timing, deadlines, recurring tasks |
 | role-specific | F076 | content scoped to a role or audience |
 | warning | F708 | critical notices, compliance callouts |
+| faq | F31F | Q&A, common questions |
+| tip | F66A | best practices, efficiency notes |
+| contact | F4B8 | who to contact, escalation paths |
 | screen | EA89 | screen workflows, Epic navigation |
 | guide | EAD9 | multi-panel or sidebar guides |
 | watch | EE88 | key notices, eyes-on-this |
@@ -93,8 +97,8 @@ Naming: `icon_{CODEPOINT}_{BORDER_COLOR_NO_HASH}_12.png`
 
 ## Controlled Vocabulary
 
-**Document type labels** (for `doc-type` and tags):
+**Document type labels** (for `doc-type`):
 Tip Sheet, Training Script / Guide, Release Guide, Workflow Guide, Policy, Reference, Job Aid, Onboarding, Communication
 
-**Audience values** (for `doc-meta` and tags):
+**Audience values** (for `doc-meta`):
 All Staff, All Clinical Staff, Providers, Advanced Practice Providers (APP), Providers / APP, Nursing Staff (RN), Medical Assistants (MA), RN / MA, Nursing Staff (RN / MA), Front Desk / Scheduling, Professional Billing (PB), Health Information Management (HIM), Practice Administrators, Community Connect Practices, New Hires

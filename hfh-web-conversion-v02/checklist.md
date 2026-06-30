@@ -9,8 +9,9 @@ Run this before saving any final HTML output. Each item is a binary pass/fail. D
 - [ ] Hero contains only the logo — no title, tags, or labels
 - [ ] Archive banner is present if archive status is "legacy"; absent if "current"
 - [ ] `doc-type` label uses `var(--cyan)` — not the section accent color
+- [ ] `doc-desc` is present and is exactly one sentence — not blank, not multi-sentence
 - [ ] `doc-meta` has audience, version, and date — no blank fields (use "v1.0" and current date as fallback)
-- [ ] 1–3 `doc-tags` present, using controlled vocabulary values
+- [ ] No `doc-tags` block present — tags were removed in v02
 - [ ] Sidebar nav (if sidebar layout) has one `.nav-group` per section with correct `--ac` inline style
 - [ ] All section `id` attributes are unique and match sidebar `href` anchors
 
@@ -39,6 +40,9 @@ Run this before saving any final HTML output. Each item is a binary pass/fail. D
 - [ ] No empty sections (heading with no body)
 - [ ] No two callouts placed back to back without intervening content
 - [ ] Multi-audience content is split or consolidated per the multi-audience rules
+- [ ] Tables (if present) are wrapped in `.tbl-wrap` and use `.data-table` class
+- [ ] FAQ sections (if present) use `.faq-item` / `.faq-q` / `.faq-a` pattern
+- [ ] Contact sections (if present) use `.contact-card` pattern
 
 ## Images
 

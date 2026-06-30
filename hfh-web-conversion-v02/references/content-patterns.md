@@ -225,3 +225,58 @@ Use for comparison data, lookup grids, or structured reference content from sour
 **Vertical rhythm (sidebar layout):** One `2.5rem` margin-bottom between sections. Do not stack multiple spacers.
 
 **Vertical rhythm (simplified layout):** One `1.5rem` margin-bottom between sections.
+
+---
+
+## FAQ Sections
+
+Use for Q&A and common-questions content (mode: `faq`).
+
+```html
+<div class="faq-item">
+  <div class="faq-q">Question text?</div>
+  <div class="faq-a">Answer text.</div>
+</div>
+```
+
+**CSS to add inline in the `<style>` block when FAQ content is present:**
+
+```css
+.faq-item { border-bottom: 1px solid var(--border); padding: .85rem 0; }
+.faq-item:last-child { border-bottom: none; }
+.faq-q { font-weight: 700; color: var(--navy); margin-bottom: .35rem; font-size: 14px; }
+.faq-a { font-size: 14px; color: var(--text); }
+```
+
+**FAQ rules:**
+- Do not wrap FAQ items in a card. Use the `.faq-item` pattern directly inside the section.
+- A callout (NOTE, TIP) may follow a `.faq-a` to add context, but never precede the `.faq-q`.
+- If the source has more than 10 Q&A pairs in one section, split with a `.sub-head` at a logical category boundary.
+
+---
+
+## Contact Sections
+
+Use for who-to-contact and escalation-path content (mode: `contact`).
+
+```html
+<div class="contact-card">
+  <div class="contact-role">Help Desk</div>
+  <div class="contact-detail"><strong>Phone:</strong> 555-867-5309</div>
+  <div class="contact-detail"><strong>Hours:</strong> Mon–Fri, 7am–6pm</div>
+  <div class="contact-detail"><strong>Email:</strong> helpdesk@hfh.edu</div>
+</div>
+```
+
+**CSS to add inline in the `<style>` block when contact content is present:**
+
+```css
+.contact-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: .85rem 1.1rem; margin-bottom: .75rem; }
+.contact-role { font-weight: 700; color: var(--ac, var(--cyan)); font-size: 13px; text-transform: uppercase; letter-spacing: .04em; margin-bottom: .4rem; }
+.contact-detail { font-size: 14px; color: var(--text); margin-bottom: .2rem; }
+```
+
+**Contact rules:**
+- Use `.contact-card` for each distinct contact entity (department, team, or role).
+- If there are 2 or more contact cards, wrap them in a `.card-grid` for side-by-side layout.
+- Omit any field (`Phone`, `Email`, `Hours`) if the source does not provide it — do not leave placeholder text.

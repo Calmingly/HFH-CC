@@ -70,7 +70,7 @@
     .doc-type { font-size: 11px; font-weight: 700; letter-spacing: .5em; text-transform: uppercase; color: var(--cyan); margin-bottom: .5rem; }
     .doc-header h1 { font-size: 1.75rem; font-weight: 700; color: var(--navy); line-height: 1.25; margin-bottom: .5rem; }
     .doc-desc { font-size: 14px; color: var(--muted); margin-bottom: .6rem; }
-    .doc-meta { font-size: 12px; color: #888; letter-spacing: .02em; margin-bottom: .75rem; }
+    .doc-meta { font-size: 12px; color: #888; letter-spacing: .02em; }
 
     /* ── CONTENT ─────────────────────────────────────────────── */
     .content { padding: 2rem 2.5rem; }
@@ -167,6 +167,27 @@
       margin-bottom: .5rem;
     }
     .byb-head img { width: 16px; height: 16px; display: block; }
+
+    /* ── KEY TAKEAWAYS ───────────────────────────────────────── */
+    .key-takeaways {
+      background: var(--blue-lt);
+      border: 1px solid var(--blue-md);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-top: 2rem;
+    }
+    .kt-head {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #00205B;
+      margin-bottom: .5rem;
+    }
+    .kt-head img { width: 16px; height: 16px; display: block; }
 
     /* ── CALLOUTS ────────────────────────────────────────────── */
     .callout {
@@ -304,6 +325,19 @@
 
       <!-- Continue adding sections, cycling accent colors:
            cyan #0091E1 → pink #DC0096 → purple #7D50AC → green #00C896 → orange #FA550A → blue #1464B9 → repeat -->
+
+      <!-- KEY TAKEAWAYS (Training Guides, Workflow Guides, Release Guides only — omit for Tip Sheets, Job Aids, Policies) -->
+      <!--
+      <div class="key-takeaways">
+        <div class="kt-head">
+          <img src="data:image/png;base64,[BASE64:icon_EB45_00205B_12.png]" alt="" width="16" height="16">
+          Key Takeaways
+        </div>
+        <ul>
+          <li>[Takeaway item.]</li>
+        </ul>
+      </div>
+      -->
 
     </div><!-- /.content -->
   </div><!-- /.main -->
