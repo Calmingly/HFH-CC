@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[DOCUMENT TITLE]</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ── TOKENS ──────────────────────────────────────────────── */
+    :root {
+      --navy:    #000064;
+      --blue:    #1464B9;
+      --blue-lt: #F0F5FB;
+      --blue-md: #D6E4F2;
+      --cyan:    #0091E1;
+      --pink:    #DC0096;
+      --purple:  #7D50AC;
+      --green:   #00C896;
+      --orange:  #FA550A;
+      --bg:      #F7F9FC;
+      --surface: #FFFFFF;
+      --text:    #0D1B2E;
+      --muted:   #5A6880;
+      --border:  #E2EAF3;
+      --amber:   #B45309;
+    }
+
+    /* ── RESET ───────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+      display: block;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    ul, ol { padding-left: 1.4rem; }
+    li { margin-bottom: .35rem; }
+
+    /* ── MAIN ────────────────────────────────────────────────── */
+    .main { max-width: 820px; margin: 0 auto; padding: 0 0 4rem; }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    .hero {
+      background: #FFFFFF;
+      padding: 1.5rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-logo { height: 72px; width: auto; max-width: 560px; display: block; }
+
+    /* ── ARCHIVE BANNER ──────────────────────────────────────── */
+    /* Insert below .hero, above .doc-header, only for legacy/archive documents */
+    /* <div class="archive-banner">ARCHIVE: This document was produced under a previous branding system. Content may be outdated. Verify with your supervisor before use.</div> */
+    .archive-banner {
+      background: #FFFBEB;
+      border-left: 4px solid var(--amber);
+      padding: .65rem 2.5rem;
+      font-size: 13px;
+      color: var(--amber);
+      font-weight: 600;
+    }
+
+    /* ── DOC HEADER ──────────────────────────────────────────── */
+    .doc-header { padding: 1.25rem 2.5rem 1rem; background: #FFFFFF; border-bottom: 1px solid var(--border); }
+    .doc-type { font-size: 11px; font-weight: 700; letter-spacing: .5em; text-transform: uppercase; color: var(--cyan); margin-bottom: .5rem; }
+    .doc-header h1 { font-size: 1.75rem; font-weight: 700; color: var(--navy); line-height: 1.25; margin-bottom: .5rem; }
+    .doc-desc { font-size: 14px; color: var(--muted); margin-bottom: .6rem; }
+    .doc-meta { font-size: 12px; color: #888; letter-spacing: .02em; margin-bottom: .75rem; }
+
+    /* ── CONTENT ─────────────────────────────────────────────── */
+    .content { padding: 2rem 2.5rem; }
+
+    /* ── SECTION ─────────────────────────────────────────────── */
+    .section { margin-bottom: 1.5rem; }
+
+    /* ── SECTION HEADING ─────────────────────────────────────── */
+    .sec-head {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      margin-bottom: 1rem;
+      padding-bottom: .5rem;
+      position: relative;
+    }
+    .sec-head::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: var(--ac, var(--cyan));
+      opacity: .25;
+    }
+    /* Omit section number badges when there are only 2 sections */
+    .sec-head-icon { width: 25px; height: 25px; flex-shrink: 0; display: block; }
+    .sec-head h2 { font-size: 1.25rem; font-weight: 700; color: var(--ac, var(--cyan)); letter-spacing: .01em; }
+
+    /* ── ARTICLE PROSE ───────────────────────────────────────── */
+    .article-body { max-width: 680px; margin-bottom: 1rem; color: var(--text); }
+
+    /* ── CARDS ───────────────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 1rem;
+      transition: border-color .15s;
+    }
+    .card:hover { border-color: var(--ac, var(--cyan)); }
+    .card-top { display: flex; align-items: baseline; gap: .6rem; margin-bottom: .5rem; flex-wrap: wrap; }
+    .card-id { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; color: var(--ac, var(--cyan)); background: var(--blue-lt); border-radius: 3px; padding: 1px 6px; flex-shrink: 0; }
+    .card-top h3 { font-size: 14px; font-weight: 700; color: var(--navy); flex: 1; }
+    .card-ref { font-size: 11px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+    .card-body { font-size: 14px; color: var(--text); }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+
+    /* ── STEPS ───────────────────────────────────────────────── */
+    ol.steps { counter-reset: step-counter; list-style: none; padding-left: 0; }
+    ol.steps > li {
+      counter-increment: step-counter;
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: flex-start;
+    }
+    ol.steps > li::before {
+      content: counter(step-counter);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ac, var(--cyan));
+      background: var(--blue-lt);
+      border: 1.5px solid var(--ac, var(--cyan));
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    ol.steps > li > div { flex: 1; }
+    ol.sub-steps { list-style: lower-alpha; padding-left: 1.4rem; margin-top: .4rem; font-size: 14px; }
+
+    /* ── BEFORE YOU BEGIN ────────────────────────────────────── */
+    .before-you-begin {
+      background: #FFFBEB;
+      border-left: 4px solid var(--amber);
+      border-radius: 0 6px 6px 0;
+      padding: .85rem 1.1rem;
+      margin-bottom: 1.25rem;
+    }
+    .byb-head {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #00205B;
+      margin-bottom: .5rem;
+    }
+    .byb-head img { width: 16px; height: 16px; display: block; }
+
+    /* ── CALLOUTS ────────────────────────────────────────────── */
+    .callout {
+      border-left: 4px solid var(--callout-color);
+      border-radius: 0 6px 6px 0;
+      padding: .65rem 1rem;
+      margin: 1rem 0;
+      font-size: 14px;
+      background: var(--callout-fill);
+    }
+    .callout-label { display: flex; align-items: center; gap: .35rem; margin-bottom: .35rem; }
+    .callout-label img { width: 16px; height: 16px; display: block; }
+    .callout-label strong { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--callout-color); }
+
+    /* ── SUB-HEAD ────────────────────────────────────────────── */
+    .sub-head { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin: 1rem 0 .4rem; }
+
+    /* ── SCREENSHOTS ─────────────────────────────────────────── */
+    .shots { margin: .75rem 0 0; }
+    .shots img { max-width: min(100%, 800px); height: auto; display: block; border: none; }
+    .shot-caption { font-size: 12px; font-style: italic; color: var(--muted); margin: 4px 0 12px; }
+    .shots-compare { display: flex; gap: 1rem; margin: 1rem 0; }
+    .shots-compare-col { flex: 1; }
+    .shots-compare-label { font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .04em; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero { padding: 1rem 1.25rem; }
+      .doc-header { padding: 1.25rem; }
+      .content { padding: 1.25rem; }
+      .card-grid { grid-template-columns: 1fr; }
+      .shots-compare { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main">
+
+    <!-- HERO: logo only, no other content -->
+    <div class="hero">
+      <img class="hero-logo" src="data:image/png;base64,[LOGO_BASE64]" alt="Henry Ford Health | Community Connect">
+    </div>
+
+    <!-- ARCHIVE BANNER: uncomment and insert here only for legacy/archive documents -->
+    <!-- <div class="archive-banner">ARCHIVE: This document was produced under a previous branding system. Content may be outdated. Verify with your supervisor before use.</div> -->
+
+    <!-- DOC HEADER -->
+    <div class="doc-header">
+      <div class="doc-type">[DOCUMENT TYPE — e.g. TIP SHEET]</div>
+      <h1>[Document Title]</h1>
+      <p class="doc-desc">[One sentence describing the document purpose.]</p>
+      <div class="doc-meta">[Audience] &nbsp;&middot;&nbsp; v1.0 &nbsp;&middot;&nbsp; Updated [Month Year]</div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION 1 — accent: cyan #0091E1
+           Replace id, --ac, icon src, and heading text.
+           ═══════════════════════════════════════════════════════ -->
+      <section class="section" id="section-1" style="--ac:#0091E1">
+        <div class="sec-head">
+          <img class="sec-head-icon" src="data:image/png;base64,[BASE64:icon_XXXX_0091E1_15.png]" alt="" width="25" height="25">
+          <h2>[Section 1 Title]</h2>
+        </div>
+
+        <!-- Optional: intro prose -->
+        <p class="article-body">[Optional introductory paragraph.]</p>
+
+        <!-- Optional: Before You Begin block -->
+        <!--
+        <div class="before-you-begin">
+          <div class="byb-head">
+            <img src="data:image/png;base64,[BASE64:icon_EF4C_00205B_12.png]" alt="" width="16" height="16">
+            Before You Begin
+          </div>
+          <ul>
+            <li>[Prerequisite item]</li>
+          </ul>
+        </div>
+        -->
+
+        <!-- STEP EXAMPLE (procedure sections) -->
+        <!--
+        <ol class="steps">
+          <li><div>
+            [Step text.]
+          </div></li>
+          <li><div>
+            [Step text with screenshot.]
+            <div class="shots">
+              <img src="data:image/jpeg;base64,[IMAGE_BASE64]" alt="[Description]" style="max-width:min(100%,800px);height:auto;display:block;">
+            </div>
+            <p class="shot-caption">[Caption.]</p>
+            <div style="margin-bottom:1rem;"></div>
+          </div></li>
+        </ol>
+        -->
+
+        <!-- CARD EXAMPLE -->
+        <!--
+        <div class="card" id="card-1-1">
+          <div class="card-top">
+            <h3>[Card Title]</h3>
+          </div>
+          <div class="card-body">[Card content.]</div>
+        </div>
+        -->
+
+        <!-- CALLOUT EXAMPLE -->
+        <!--
+        <div class="callout" style="--callout-color:#1464B9;--callout-fill:#D6E4F7;">
+          <div class="callout-label">
+            <img src="data:image/png;base64,[BASE64:icon_F028_1464B9_12.png]" alt="" width="16" height="16">
+            <strong>NOTE</strong>
+          </div>
+          [Callout content.]
+        </div>
+        -->
+
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════
+           SECTION 2 — accent: pink #DC0096
+           ═══════════════════════════════════════════════════════ -->
+      <section class="section" id="section-2" style="--ac:#DC0096">
+        <div class="sec-head">
+          <img class="sec-head-icon" src="data:image/png;base64,[BASE64:icon_XXXX_DC0096_15.png]" alt="" width="25" height="25">
+          <h2>[Section 2 Title]</h2>
+        </div>
+        <p class="article-body">[Section content.]</p>
+      </section>
+
+      <!-- Continue adding sections, cycling accent colors:
+           cyan #0091E1 → pink #DC0096 → purple #7D50AC → green #00C896 → orange #FA550A → blue #1464B9 → repeat -->
+
+    </div><!-- /.content -->
+  </div><!-- /.main -->
+
+</body>
+</html>
