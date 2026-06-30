@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HFCC MyChart Tip Sheets</title>
+<style>
+  :root {
+    --blue-dark: #002554;
+    --blue: #0057b8;
+    --blue-light: #eaf2fb;
+    --accent: #00a3e0;
+    --text: #1c2733;
+    --muted: #5a6b7a;
+    --border: #d8e2ec;
+    --bg: #f5f8fb;
+    --warn-bg: #fff6e0;
+    --warn-border: #f0c14b;
+    --note-bg: #e9f7ff;
+    --note-border: #6fc6e8;
+    --important-bg: #fdeaea;
+    --important-border: #e2746f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    display: flex;
+    min-height: 100vh;
+  }
+  header.site-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    background: var(--blue-dark);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    z-index: 20;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+  header.site-header .logo {
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.3px;
+  }
+  header.site-header .logo span {
+    color: var(--accent);
+  }
+  header.site-header .subtitle {
+    margin-left: 14px;
+    font-size: 0.85rem;
+    color: #b9c8da;
+    border-left: 1px solid #2c4566;
+    padding-left: 14px;
+  }
+  nav.sidebar {
+    position: fixed;
+    top: 64px;
+    bottom: 0;
+    left: 0;
+    width: 270px;
+    background: #fff;
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    padding: 18px 0 40px;
+  }
+  nav.sidebar .nav-section-title {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    padding: 10px 20px 6px;
+  }
+  nav.sidebar a {
+    display: block;
+    padding: 10px 20px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.92rem;
+    border-left: 3px solid transparent;
+  }
+  nav.sidebar a small {
+    display: block;
+    color: var(--muted);
+    font-size: 0.76rem;
+    margin-top: 2px;
+  }
+  nav.sidebar a:hover {
+    background: var(--blue-light);
+  }
+  nav.sidebar a.active {
+    background: var(--blue-light);
+    border-left-color: var(--blue);
+    color: var(--blue-dark);
+    font-weight: 600;
+  }
+  main {
+    margin-left: 270px;
+    margin-top: 64px;
+    flex: 1;
+    padding: 32px 40px 80px;
+    max-width: 880px;
+  }
+  .intro {
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+    color: #fff;
+    border-radius: 10px;
+    padding: 28px 30px;
+    margin-bottom: 36px;
+  }
+  .intro h1 {
+    margin: 0 0 8px;
+    font-size: 1.6rem;
+  }
+  .intro p {
+    margin: 0;
+    color: #d6e6f7;
+    font-size: 0.97rem;
+    line-height: 1.5;
+  }
+  article.tipsheet {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 30px 34px;
+    margin-bottom: 36px;
+    scroll-margin-top: 80px;
+  }
+  article.tipsheet .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  article.tipsheet h2 {
+    margin: 0 0 6px;
+    font-size: 1.4rem;
+    color: var(--blue-dark);
+  }
+  article.tipsheet .summary {
+    color: var(--muted);
+    margin: 0 0 10px;
+    font-size: 0.98rem;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+  .meta-row span {
+    background: var(--blue-light);
+    color: var(--blue-dark);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  h3.block-title {
+    font-size: 1.02rem;
+    color: var(--blue-dark);
+    margin: 26px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  ol.steps {
+    margin: 0;
+    padding-left: 22px;
+  }
+  ol.steps li {
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+  ol.steps li .screenshot-note {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.83rem;
+    color: var(--muted);
+    background: #f3f6f9;
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    padding: 6px 10px;
+  }
+  ol.steps li .screenshot-note::before {
+    content: "🖼 ";
+  }
+  ul.checklist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  ul.checklist li {
+    padding: 7px 0 7px 30px;
+    position: relative;
+    line-height: 1.5;
+  }
+  ul.checklist li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--blue);
+    border-radius: 3px;
+  }
+  .callout {
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 0.93rem;
+    line-height: 1.55;
+  }
+  .callout .callout-title {
+    font-weight: 700;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .callout.note { background: var(--note-bg); border: 1px solid var(--note-border); }
+  .callout.note .callout-title { color: #15799e; }
+  .callout.important { background: var(--important-bg); border: 1px solid var(--important-border); }
+  .callout.important .callout-title { color: #b3392f; }
+  .callout.reminder { background: var(--warn-bg); border: 1px solid var(--warn-border); }
+  .callout.reminder .callout-title { color: #8a6d11; }
+  .status-key {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    gap: 10px;
+    margin: 10px 0 4px;
+  }
+  .status-key div {
+    background: #f3f6f9;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 0.88rem;
+  }
+  footer.site-footer {
+    margin-left: 270px;
+    padding: 24px 40px 50px;
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+  @media (max-width: 880px) {
+    nav.sidebar { display: none; }
+    main, footer.site-footer { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">HFCC <span>MyChart</span> Tip Sheets</div>
+  <div class="subtitle">Epic &amp; MyChart staff reference</div>
+</header>
+
+<nav class="sidebar" id="sidebar">
+  <div class="nav-section-title">Patient Engagement</div>
+  <a href="#flowsheets">Order MyChart Flowsheets <small>Providers / RN / MA</small></a>
+  <div class="nav-section-title">Scheduling</div>
+  <a href="#video-visit-frontdesk">Scheduling a Video Visit <small>Front Desk / Scheduling</small></a>
+  <a href="#video-visit-clinical">Scheduling a Video Visit <small>All Clinical Staff</small></a>
+  <div class="nav-section-title">Patient Communications</div>
+  <a href="#non-mychart-letters">Messages/Letters to Non-MyChart Patients <small>Front Desk / Scheduling</small></a>
+  <a href="#generic-letter">Sending a Generic Communication Letter <small>All Staff</small></a>
+</nav>
+
+<main>
+  <div class="intro">
+    <h1>HFCC MyChart &amp; Epic Tip Sheets</h1>
+    <p>Quick-reference guides for ordering MyChart flowsheets, scheduling video visits, and sending patient communications through Epic. Select a tip sheet from the menu to jump to its steps.</p>
+  </div>
+
+  <article class="tipsheet" id="flowsheets">
+    <div class="eyebrow">Tip Sheet</div>
+    <h2>Order MyChart Flowsheets for Patient-Entered Results</h2>
+    <p class="summary">Order a MyChart Flowsheet during an office visit so patients can enter their own testing results from MyChart.</p>
+    <div class="meta-row">
+      <span>Providers / RN / MA</span>
+      <span>Version 2.0</span>
+      <span>Last Updated June 2022</span>
+    </div>
+
+    <h3 class="block-title">Order the Flowsheet in Epic</h3>
+    <ol class="steps">
+      <li>In the Orders Preference section at the bottom of the visit, type <strong>MyChart</strong> in the Search for New Order field and click Search.
+        <span class="screenshot-note">Orders Preference section with MyChart search</span>
+      </li>
+      <li>Select the flowsheet option(s) you want the patient to enter data for (e.g., "MyChart Glucose Flowsheet") and click Accept.
+        <span class="screenshot-note">MyChart flowsheet options available for selection</span>
+      </li>
+      <li>Click the blue Summary Sentence to edit the order details:
+        <ol type="a" style="margin-top:8px;">
+          <li>Answer notification questions — such as when you want to be notified of the patient's data entries.</li>
+          <li>Enter patient instructions in the comments field. These will display to the patient in MyChart.</li>
+          <li>Click Accept when complete, then Sign the order.</li>
+        </ol>
+        <span class="screenshot-note">Summary Sentence edit with notification and instructions fields</span>
+      </li>
+    </ol>
+
+    <h3 class="block-title">Patient Experience in MyChart</h3>
+    <ol class="steps">
+      <li>The patient receives a new message that a flowsheet is available.</li>
+      <li>The patient clicks on the active flowsheet to enter data.</li>
+      <li>The patient clicks Add New Data and completes each prompted screen.</li>
+      <li>The patient clicks Continue, reviews the entered data, then clicks Submit.</li>
+    </ol>
+
+    <h3 class="block-title">Review Patient Data in Epic</h3>
+    <ol class="steps">
+      <li>Open In Basket and look in the <strong>Pt Flowsheet</strong> folder for patient-submitted entries.</li>
+      <li>Click the message to view the patient's submitted entry. Click Pt Flowsheet to view all data entries for comparison.</li>
+      <li>To view patient-entered data while in the patient's chart, open the Review Flowsheets activity.</li>
+      <li>Select Print Flowsheet or Graph Region in the lower right corner to print or graph the data.</li>
+    </ol>
+
+    <div class="callout note">
+      <span class="callout-title">Use Case</span>
+      MyChart Flowsheets allow patients to self-report recurring results such as blood glucose or blood pressure directly in their MyChart account. Flowsheets are also available under the Track My Health section of the MyChart website.
+    </div>
+    <div class="callout reminder">
+      <span class="callout-title">Editing Patient Data</span>
+      Patients can edit or delete their entered data only before the data has been viewed by an Epic user.
+    </div>
+    <div class="callout note">
+      <span class="callout-title">Message the Patient</span>
+      From the In Basket message, select Msg to Pt to send the patient a message if needed.
+    </div>
+  </article>
+
+  <article class="tipsheet" id="video-visit-frontdesk">
+    <div class="eyebrow">Tip Sheet</div>
+    <h2>Scheduling a MyChart Video Visit</h2>
+    <p class="summary">Steps for scheduling a MyChart Video Visit and confirming patient eligibility requirements.</p>
+    <div class="meta-row">
+      <span>Front Desk / Scheduling</span>
+      <span>Version 1.0</span>
+      <span>Updated November 2024</span>
+    </div>
+
+    <h3 class="block-title">Background</h3>
+    <p>A MyChart Video Visit is a virtual appointment with the provider where the patient connects remotely through the MyChart mobile app or MyChart website.</p>
+
+    <h3 class="block-title">Hands-On Practice</h3>
+    <ol class="steps">
+      <li>Go to the patient Appointment Desk and click <strong>Book It</strong>.</li>
+      <li>Select <strong>New Video Visit [20423]</strong> or <strong>Return Video Visit [20424]</strong> as the visit type. These visit types trigger the decision tree.</li>
+      <li>Complete the decision tree questions and select Apply or Continue. Pediatric questions may appear for patients under 18. If the patient is under 14 and does not have proxy access, the visit will be denied.</li>
+      <li>If the patient does not have an active MyChart account, scheduling is denied. Follow the instructions to set up MyChart, then return to scheduling.</li>
+      <li>If successful, proceed with scheduling the Video Visit and select Schedule.</li>
+      <li>Review the Video Visit information with the patient and select Schedule to complete scheduling.</li>
+    </ol>
+
+    <h3 class="block-title">What Else Do You Need to Know</h3>
+    <ul class="checklist">
+      <li>If your office uses Video Visit blocks, schedule the appointment only into a Video Visit block.</li>
+      <li>Use the earliest timeslot in the Video Visit block first to avoid negatively affecting provider clinic flow.</li>
+      <li>Ask for the best number to reach the patient on the day of the visit and enter it in Appointment Notes.</li>
+      <li>Share the MyChart Video Visit orientation card with the patient if your office supplies those items.</li>
+    </ul>
+
+    <h3 class="block-title">Pre-Visit Status Reference</h3>
+    <p>The <strong>Pre-Visit Status [23170]</strong> column can be added to a private DAR to see if the patient is logged in, checked in, or waiting for the video visit. Status alerts can help identify when staff intervention may be needed.</p>
+    <div class="status-key">
+      <div>🟢 <strong>Green Dot</strong> — Patient is on track to join the video visit.</div>
+      <div>✅ <strong>Green Check</strong> — Patient is connected to the visit.</div>
+      <div>🚩 <strong>Red Flag</strong> — Patient is not MyChart active, failed the hardware test, failed to log in to MyChart, or is late.</div>
+      <div>❓ <strong>Yellow Question Mark</strong> — Patient has not completed eCheck-in, has not started eCheck-in, or has not logged into MyChart recently.</div>
+    </div>
+
+    <div class="callout note">
+      <span class="callout-title">Before You Begin</span>
+      <ul class="checklist" style="margin-top:6px;">
+        <li>The patient has an active MyChart status.</li>
+        <li>The patient has a video-enabled device, such as a smartphone, tablet, or video-enabled computer.</li>
+        <li>The patient plans to be in Michigan or another approved state or territory during the video appointment.</li>
+        <li>Children under age 14 must have a proxy.</li>
+      </ul>
+    </div>
+    <div class="callout important">
+      <span class="callout-title">Important</span>
+      Tell the patient that video visits are time sensitive. If the patient cannot log in or connect on time, the provider may no longer be available. The patient should cancel the appointment if they cannot attend.
+    </div>
+  </article>
+
+  <article class="tipsheet" id="video-visit-clinical">
+    <div class="eyebrow">Tip Sheet</div>
+    <h2>Scheduling a MyChart Video Visit</h2>
+    <p class="summary">Schedule a virtual video visit appointment for a patient connecting remotely via the MyChart mobile app or website.</p>
+    <div class="meta-row">
+      <span>All Clinical Staff</span>
+      <span>Version 1.0</span>
+      <span>Updated Pre-2026</span>
+    </div>
+
+    <h3 class="block-title">About Video Visits</h3>
+    <p>A Video Visit is a virtual appointment with the provider during which a patient connects remotely by video through the MyChart mobile app or the MyChart website.</p>
+
+    <h3 class="block-title">Hands-On Practice</h3>
+    <ol class="steps">
+      <li>Go to the patient's appointment desk and click <strong>Make Appt</strong>.</li>
+      <li>Select either <strong>New Video Visit [20423]</strong> or <strong>Return Video Visit [20424]</strong>.</li>
+      <li>Choosing either visit type will fire a questionnaire to review with the patient. Complete the questionnaire with the patient and click Accept.</li>
+      <li>Questionnaire responses will determine if the patient can be scheduled for a video visit. If appropriate, you will receive a message to review with the patient and can proceed with scheduling.</li>
+      <li>Schedule the appointment <strong>ONLY</strong> into a time slot with a Video Visit block.</li>
+      <li>Ask for the best number to reach the patient on the day of the visit. Enter it in Appointment Notes.</li>
+      <li>Complete the scheduling and registration process. Also:
+        <ol type="a" style="margin-top:8px;">
+          <li>Share the MyChart Video Visit orientation card with the patient.</li>
+          <li>Share the late policy: "Video visits are time sensitive. If you are not able to log in or connect to your visit on time, the provider may no longer be available. Please cancel your appointment if you are not able to attend."</li>
+        </ol>
+      </li>
+    </ol>
+
+    <div class="callout note">
+      <span class="callout-title">Note</span>
+      If answering "Yes" to "Is the patient under 18?", answers for the next two questions are required. If answering "No", the next two questions are not required.
+    </div>
+    <div class="callout important">
+      <span class="callout-title">Important</span>
+      If the patient is NOT appropriate for a video visit, you will receive an error message in red indicating the reason(s) the visit cannot be scheduled.
+    </div>
+    <div class="callout reminder">
+      <span class="callout-title">Reminder</span>
+      When scheduling video visits, use the earliest available time slot in the block first. Leaving early slots open risks releasing them to in-office visits, which negatively affects the provider's clinic flow.
+    </div>
+  </article>
+
+  <article class="tipsheet" id="non-mychart-letters">
+    <div class="eyebrow">Tip Sheet</div>
+    <h2>Sending Direct Messages or Letters to Non-MyChart Patients</h2>
+    <p class="summary">How to send a message or letter electronically via Epic to patients who are not enrolled in MyChart, using a secure link delivered by text or email.</p>
+    <div class="meta-row">
+      <span>Front Desk / Scheduling</span>
+      <span>Version 1.0</span>
+      <span>Update April 2026</span>
+    </div>
+
+    <h3 class="block-title">Background</h3>
+    <p>Sending a message or letter to a patient who is not on MyChart can now be done electronically in Epic. A secure link is delivered to the patient via text or email. You can type a blank letter or use a template based on the situation.</p>
+
+    <h3 class="block-title">Sending a Message or Letter</h3>
+    <ol class="steps">
+      <li>Go to Appt Desk and search for your patient. Click the Communication Preference icon located next to the patient's picture on the storyboard.</li>
+      <li>Verify the phone number and email are correct. Under Manage Text Message Consent, confirm the patient is Opted In for "Account, patient, and visit updates." Under Communication Preferences, confirm Letters is active for Text and/or Email.</li>
+      <li>Close the panel to return to the patient's Appt Desk. On the toolbar, select <strong>Communications</strong>.</li>
+      <li>In the Patient Encounter Selection box, choose to open a previous encounter or create a new encounter, then click Accept.</li>
+      <li>Fill in the Type and Provider fields, then click Accept.</li>
+      <li>On the far right side under the Communications section, click <strong>New Communication</strong>.</li>
+      <li>Choose a letter template or create a blank letter. On the left side, click Patient. Locate the section indicating the patient is not MyChart active and expand it. Choose whether to Send Secure Link via Email and/or Text. Verify the letter content, then click Send Now.</li>
+    </ol>
+
+    <div class="callout note">
+      <span class="callout-title">Before You Begin</span>
+      <ul class="checklist" style="margin-top:6px;">
+        <li>Patient must have a phone number and/or email address on file in Epic.</li>
+        <li>Patient must be opted in for text message consent (Account, patient, and visit updates).</li>
+        <li>For new Epic patients, complete the Demographics/Registration section first.</li>
+      </ul>
+    </div>
+    <div class="callout note">
+      <span class="callout-title">Note</span>
+      The patient will receive the message or letter via the delivery method selected (text or email) as a secure link they can open without a MyChart account.
+    </div>
+  </article>
+
+  <article class="tipsheet" id="generic-letter">
+    <div class="eyebrow">Tip Sheet</div>
+    <h2>Sending a Generic Communication Letter to a Patient</h2>
+    <p class="summary">Create and send a patient letter from the Communications activity in an encounter or from the Appointment Desk.</p>
+    <div class="meta-row">
+      <span>All Staff</span>
+      <span>Version 1.0</span>
+      <span>Updated Pre-2026</span>
+    </div>
+
+    <h3 class="block-title">Background</h3>
+    <p>Use the Communications activity to create and send a letter to a patient. The Communications activity can only be accessed in an encounter for clinical providers.</p>
+
+    <h3 class="block-title">Hands-On Practice</h3>
+    <ol class="steps">
+      <li>Clinical providers must be in a patient encounter to use the Communications activity. If an encounter is not open, open one for the patient.</li>
+      <li>CSRs access Communications from the Appointment Desk screen.</li>
+      <li>Type the patient name in the patient lookup box.</li>
+      <li>Click <strong>New Communication</strong>.</li>
+      <li>Use the quick buttons to select who should receive the letter, or search for additional contacts.</li>
+      <li>Modify how recipients receive the communication, depending on how they are set up in Epic. Click the recipient name to see options. The patient may receive the letter through MyChart, Mail, or Print Locally. To fax, click the Free Text quick button.</li>
+      <li>Click <strong>Other</strong> to select a letter template.</li>
+      <li>Click in the search box, type <strong>Gen blank</strong>, and press Enter. Select the letter template from the list and press Accept.</li>
+      <li>Address any SmartLists or wildcards (<code>***</code>) by pressing <strong>F2</strong> on the keyboard.</li>
+      <li>To finalize and send the letter, use an action button at the bottom right. <strong>Preview</strong> lets you view the letter. <strong>Pend</strong> saves it for later. <strong>Send Now</strong> marks it complete and sends it to the printer or through MyChart. <strong>Send at Sign Visit</strong> does the same after the encounter is closed. <strong>Cancel</strong> lets you start over.</li>
+      <li>After the letter is sent, view it in Chart Review under the <strong>Letters</strong> tab.</li>
+    </ol>
+
+    <div class="callout note">
+      <span class="callout-title">Before You Begin</span>
+      <ul class="checklist" style="margin-top:6px;">
+        <li>Clinical providers must be in a patient encounter to access the Communications activity.</li>
+        <li>CSRs use the Appointment Desk screen to access Communications.</li>
+      </ul>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  HFCC Epic / MyChart staff reference — content sourced from internal tip sheets. For training use only.
+</footer>
+
+<script>
+  const links = document.querySelectorAll('nav.sidebar a');
+  const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href')));
+
+  function setActive() {
+    let current = sections[0];
+    const scrollPos = window.scrollY + 100;
+    sections.forEach(sec => {
+      if (sec && sec.offsetTop <= scrollPos) current = sec;
+    });
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current.id));
+  }
+  window.addEventListener('scroll', setActive);
+  window.addEventListener('load', setActive);
+</script>
+
+</body>
+</html>
