@@ -7,6 +7,12 @@
       "skillPath": "skills/find-skills/SKILL.md",
       "computedHash": "1c27b1774a4ec17ad4556a72e3c0168beab3af0183b2c1b8aa9e320af3ff41ce"
     },
+    "impeccable": {
+      "source": "pbakaus/impeccable",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/impeccable/SKILL.md",
+      "computedHash": "7559c04b92763b1b9237fe69bd08af97e9b8d286ad6d1fae4ce07deb35e10446"
+    },
     "using-superpowers": {
       "source": "obra/superpowers",
       "sourceType": "github",
